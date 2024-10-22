@@ -1,8 +1,5 @@
 name: Playwright Tests
 on:
-  push:
-    branches:
-      - '**'
   workflow_dispatch:
     inputs:
       browser:
@@ -38,16 +35,12 @@ jobs:
 
     - name: Run Playwright tests
       run: |
-        if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-          if [ "${{ inputs.browser }}" = "chrome" ]; then
-            npm run test:chrome:html
-          elif [ "${{ inputs.browser }}" = "firefox" ]; then
-            npm run test:firefox:html
-          elif [ "${{ inputs.browser }}" = "api" ]; then
-            npm run test:api:html
-          else
-            npm run test:all:html
-          fi
+        if [ "${{ inputs.browser }}" = "chrome" ]; then
+          npm run test:chrome:html
+        elif [ "${{ inputs.browser }}" = "firefox" ]; then
+          npm run test:firefox:html
+        elif [ "${{ inputs.browser }}" = "api" ]; then
+          npm run test:api:html
         else
           npm run test:all:html
         fi
