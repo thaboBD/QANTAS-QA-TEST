@@ -1,17 +1,18 @@
 name: Playwright Tests
+
 on:
   workflow_dispatch:
     inputs:
       browser:
         description: 'Browser to run tests on'
-        type: choice
+        type: 'choice'
+        options:
+        - 'all'
+        - 'chrome'
+        - 'firefox'
+        - 'api'
         required: true
         default: 'all'
-        options:
-          - all
-          - chrome
-          - firefox
-          - api
 
 jobs:
   test:
@@ -35,11 +36,11 @@ jobs:
 
     - name: Run Playwright tests
       run: |
-        if [ "${{ inputs.browser }}" = "chrome" ]; then
+        if [ "${{ github.event.inputs.browser }}" = "chrome" ]; then
           npm run test:chrome:html
-        elif [ "${{ inputs.browser }}" = "firefox" ]; then
+        elif [ "${{ github.event.inputs.browser }}" = "firefox" ]; then
           npm run test:firefox:html
-        elif [ "${{ inputs.browser }}" = "api" ]; then
+        elif [ "${{ github.event.inputs.browser }}" = "api" ]; then
           npm run test:api:html
         else
           npm run test:all:html
