@@ -2,6 +2,7 @@
 
 Automated UI and API tests using Playwright.
 
+Note: normally I wouldn't commit the .env file but to make the setup easier i have included it in the repo.
 ## Prerequisites
 
 - Node.js v20 or above ([download](https://nodejs.org/))
