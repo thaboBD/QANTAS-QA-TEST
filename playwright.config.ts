@@ -8,15 +8,13 @@ const config: PlaywrightTestConfig = {
     }],
     ['line']
   ],
-  use: {
-    baseURL: 'https://www.saucedemo.com/',
-  },
   projects: [
     {
       name: 'chromium',
       retries: 3,
       use: { 
         browserName: 'chromium',
+        baseURL: 'https://www.saucedemo.com/',
       },
       testDir: 'src/ui/tests',
     },
@@ -24,14 +22,15 @@ const config: PlaywrightTestConfig = {
       name: 'firefox',
       retries: 3,
       use: { 
-        browserName: 'firefox' 
+        browserName: 'firefox',
+        baseURL: 'https://www.saucedemo.com/',
       },
       testDir: 'src/ui/tests',
     },
     {
       name: 'Api-tests',
       use: {
-        baseURL: 'https://petstore.swagger.io/v2/',
+        baseURL: 'https://api.weatherbit.io/v2.0/',
       },
       testDir: 'src/api/tests',
     },

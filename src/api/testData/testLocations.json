@@ -1,0 +1,24 @@
+{
+    "locations": [
+      {
+        "name": "Sydney CBD",
+        "lat": -33.865143,
+        "lon": 151.209900
+      },
+      {
+        "name": "Bondi Beach",
+        "lat": -33.891667,
+        "lon": 151.276111
+      },
+      {
+        "name": "Manly Beach",
+        "lat": -33.797222,
+        "lon": 151.288611
+      },
+      {
+        "name": "Parramatta",
+        "lat": -33.815556,
+        "lon": 151.001111
+      }
+    ]
+  }
