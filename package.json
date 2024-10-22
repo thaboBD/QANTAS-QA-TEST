@@ -3,7 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "playwright:headed:chrome": "playwright test --headed --config ./playwright.config.ts --project=chromium",
+    "playwright:headed:firefox": "playwright test --headed --config ./playwright.config.ts --project=firefox",
+    "playwright:headless:chrome": "playwright test --config ./playwright.config.ts --project=chromium",
+    "playwright:headless:firefox": "playwright test --config ./playwright.config.ts --project=firefox",
+    "playwright:headless:all": "playwright test --config ./playwright.config.ts",
+    "playwright:interactive": "playwright test --headed --ui --config ./playwright.config.ts",
+    "playwright:api": "playwright test --config ./playwright.config.ts --project=Api-tests"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
