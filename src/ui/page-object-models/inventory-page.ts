@@ -25,6 +25,10 @@ export class InventoryPage {
         this.inventoryItems = page.locator('[data-test="inventory-item"]');
     }
 
+    /**
+     * A helper function to get all products on the page
+     * @returns Array of all products on the page
+     */
     private async getAllProducts(): Promise<Product[]> {
         const products: Product[] = [];
         const items = await this.inventoryItems.all();
@@ -47,6 +51,11 @@ export class InventoryPage {
         return products;
     }
 
+    /**
+     * Adds a random number of products to the cart
+     * @param count - Number of products to add
+     * @returns Array of selected products
+     */
     public async addRandomProducts(count: number = 1): Promise<Product[]> {
         const allProducts = await this.getAllProducts();
         const selectedProducts: Product[] = [];
@@ -75,27 +84,41 @@ export class InventoryPage {
         return [...this.selectedProducts];
     }
 
+    /**
+     * Filters the products based on the provided filter option
+     * @param filter - Filter option to apply
+     */
     public async filterProducts(filter: productFilterOptions) {
         await this.productFilter.waitFor({ state: 'visible' });
         await this.productFilter.selectOption({ label: filter });
     }
 
+    /**
+     * Retrieves the prices of all items on the page
+     * @returns Array of item prices
+     */
     public async getItemPrices(): Promise<number[]> {
         const pricesText = await this.itemPrices.allTextContents();
         const prices = pricesText.map(price => parseFloat(price.replace('$', '')));
         return prices;
     }
 
+    /**
+     * Retrieves the number of items in the shopping cart
+     * @returns Number of items in the cart
+     */
     public async getShoppingCartCount(): Promise<number> {
         try {
             const cartCountText = await this.shoppingCartBadge.textContent();
             return cartCountText ? parseInt(cartCountText, 10) : 0;
         } catch (error) {
-            // If badge is not found (cart is empty), return 0
             return 0;
         }
     }
 
+    /**
+     * Validates that the number of selected products matches the cart count
+     */
     public async validateCartCount(): Promise<void> {
         const expectedCount = this.selectedProducts.length;
         const actualCount = await this.getShoppingCartCount();
@@ -112,10 +135,17 @@ export class InventoryPage {
         return this.page.locator('.inventory_item_name', { hasText: productName });
     }
 
+    /**
+     * 
+     * @param product - Product to validate
+     */
     public async validateProductInList(product: Product): Promise<void> {
         await expect(this.getProductNameLocator(product.name)).toBeVisible();
     }
 
+    /**
+     * Validates that all selected products are displayed on the page
+     */
     public async validateAllSelectedProducts(): Promise<void> {
         for (const product of this.selectedProducts) {
             await this.validateProductInList(product);
@@ -124,6 +154,7 @@ export class InventoryPage {
 
 }
 
+// Enum to represent the available product filter options
 export enum productFilterOptions {
     NAME_A_TO_Z = 'Name (A to Z)',
     NAME_Z_TO_A = 'Name (Z to A)',

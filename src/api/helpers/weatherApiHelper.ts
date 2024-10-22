@@ -14,6 +14,11 @@ interface PostalCodeParams {
 
 export class WeatherApiHelper extends BaseApiHelper {
 
+    /**
+     * makes a request to the weather API to get the current weather
+     * @param params coordinates parameters
+     * @returns 
+     */
     async getCurrentWeather(params: CoordinatesParams): Promise<APIResponse> {
         return this.get('/current', {
             ...params,
@@ -21,6 +26,11 @@ export class WeatherApiHelper extends BaseApiHelper {
         });
     }
 
+    /**
+     * makes a request to the weather API to get the current weather with an invalid key
+     * @param params coordinates parameters
+     * @returns 
+     */
     async getInvalidKeyWeather(params: CoordinatesParams): Promise<APIResponse> {
         return this.get('/current', {
             ...params,

@@ -30,6 +30,12 @@ export class CheckoutPage {
 
     }
 
+    /**
+     * Enters customer information and submits the form
+     * @param firstName  - Customer's first name
+     * @param lastName  - Customer's last name
+     * @param postalCode  - Customer's postal code
+     */
     public async enterCustomerInformation(firstName: string, lastName: string, postalCode: string) {
         await this.customerFirstName.fill(firstName);
         await this.customerLastName.fill(lastName);
@@ -38,6 +44,11 @@ export class CheckoutPage {
         await expect(this.submitCustomerInformationButton.page()).toHaveURL(/checkout-step-two/);
     }
 
+
+    /**
+     * Retrieves the cart subtotal value
+     * @returns Cart subtotal value
+     */
     public async getCartSubtotal(): Promise<number> {
         const subtotalText = await this.cartSubtotal.textContent();
         if (subtotalText === null) {

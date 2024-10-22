@@ -6,6 +6,12 @@ export abstract class BaseApiHelper {
         protected baseApiPath: string = '/v2.0'
     ) {}
 
+    /**
+     * Makes a GET request to the API
+     * @param endpoint the endpoint to hit
+     * @param params query parameters
+     * @param headers request headers
+     */
     protected async get(endpoint: string, params?: Record<string, any>, headers?: Record<string, string>): Promise<APIResponse> {
         const defaultHeaders = {
             'Accept': 'application/json',
@@ -22,6 +28,12 @@ export abstract class BaseApiHelper {
         });
     }
 
+    /**
+     * Makes a POST request to the API
+     * @param endpoint the endpoint to hit
+     * @param params query parameters
+     * @param headers request headers
+     */
     protected async post(endpoint: string, data?: any, headers?: Record<string, string>): Promise<APIResponse> {
         const defaultHeaders = {
             'Accept': 'application/json',
@@ -39,5 +51,5 @@ export abstract class BaseApiHelper {
         });
     }
 
-    // Add other methods like put, delete, etc.
+    
 }
