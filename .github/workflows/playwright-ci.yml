@@ -2,7 +2,7 @@ name: Playwright Tests
 on:
   push:
     branches:
-      - '**'  # This will trigger on push to any branch
+      - '**'
   workflow_dispatch:
     inputs:
       browser:
@@ -37,7 +37,6 @@ jobs:
       run: npx playwright install --with-deps
 
     - name: Run Playwright tests
-      # For push events, run all tests. For manual triggers, use the selected browser
       run: |
         if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
           if [ "${{ inputs.browser }}" = "chrome" ]; then
