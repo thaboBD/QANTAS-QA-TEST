@@ -10,7 +10,15 @@
     "playwright:headless:firefox": "playwright test --config ./playwright.config.ts --project=firefox",
     "playwright:headless:all": "playwright test --config ./playwright.config.ts",
     "playwright:interactive": "playwright test --headed --ui --config ./playwright.config.ts",
-    "playwright:api": "playwright test --config ./playwright.config.ts --project=Api-tests"
+    "playwright:api": "playwright test --config ./playwright.config.ts --project=Api-tests",
+    
+    "report:clear": "node -e \"const { rmSync } = require('fs'); try { rmSync('playwright-report', { recursive: true, force: true }); } catch (e) {}\"",
+    "report:html": "playwright show-report",
+
+    "test:chrome:html": "npm run report:clear && playwright test --config ./playwright.config.ts --project=chromium --reporter=html && npm run report:html",
+    "test:firefox:html": "npm run report:clear && playwright test --config ./playwright.config.ts --project=firefox --reporter=html && npm run report:html",
+    "test:all:html": "npm run report:clear && playwright test --config ./playwright.config.ts --reporter=html && npm run report:html",
+    "test:api:html": "npm run report:clear && playwright test --config ./playwright.config.ts --project=Api-tests --reporter=html && npm run report:html"
   },
   "keywords": [],
   "author": "",

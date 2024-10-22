@@ -1,6 +1,13 @@
 import { PlaywrightTestConfig, devices } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
+  reporter: [
+    ['html', {
+      open: 'never', 
+      outputFolder: 'playwright-report'
+    }],
+    ['line']
+  ],
   use: {
     baseURL: 'https://www.saucedemo.com/',
   },

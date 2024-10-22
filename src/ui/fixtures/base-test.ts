@@ -1,5 +1,5 @@
 import {test as base   } from '@playwright/test';
-import { LoginPage , lo} from '../page-object-models/login-page';
+import { LoginPage } from '../page-object-models/login-page';
 import { CheckoutPage } from '../page-object-models/checkout-page';
 import { InventoryPage } from '../page-object-models/inventory-page';
 
